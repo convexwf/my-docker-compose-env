@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  pix2tex:
+    image: lukasblecher/pix2tex:api
+    container_name: pix2tex
+    entrypoint: python pix2tex/api/run.py
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+
+# [lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
