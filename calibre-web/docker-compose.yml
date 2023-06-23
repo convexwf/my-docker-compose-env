@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  calibre:
+    image: linuxserver/calibre-web
+    container_name: calibre-web
+    ports:
+      - "10083:8083"
+    volumes:
+      - ./config:/config
+      - ./books:/books
+  syncthing:
+    image: syncthing/syncthing
+    container_name: books-sync
+    hostname: books-cloud
+    environment:
+      - PUID=1000 #以root权限运行应用，否则无法读取其他docker目录或者宿主机root目录
+      - PGID=1000
+    volumes:
+      - ./:/var/syncthing/calibre
+    network_mode: host
+    restart: unless-stopped
