@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  rcon:
+    image: outdead/rcon:latest
+    container_name: rcon
+    entrypoint: ["/rcon", "-a", "{{ip:port}}", "-p", "XXXXXXXX"]
+    profiles: ["rcon"]
+  palworld-dedicated-server:
+    #build: .
+    container_name: palworld-dedicated-server
+    image: jammsen/palworld-dedicated-server:latest
+    restart: always
+    network_mode: bridge
+    ports:
+      - target: 8211 # 容器内游戏端口
+        published: 8211 # 宿主机映射端口
+        protocol: udp
+        mode: host
+      - target: 25575 # RCON port inside of the container
+        published: 25575 # RCON port on your host
+        protocol: tcp
+        mode: host
+    env_file:
+      - ./dev.env
+    volumes:
+      - /home/ubuntu/packages/palworld/data:/palworld # volume自己去指定
+
