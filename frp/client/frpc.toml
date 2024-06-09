@@ -1,0 +1,12 @@
+transport.tls.enable = false
+serverAddr = "0.0.0.0"
+serverPort = 7000
+
+auth.token = "token"
+
+[[proxies]]
+name = "test-http"
+type = "tcp"
+localIP = "nginx" # 需要暴露的服务的IP
+localPort = 80 # 将本地9000端口的服务暴露在公网的6060端口
+remotePort = 7002 # 暴露服务的公网入口

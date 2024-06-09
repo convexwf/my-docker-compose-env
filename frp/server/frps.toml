@@ -1,0 +1,11 @@
+bindPort = 7000
+
+transport.tls.force = false
+
+auth.token = "token"
+
+# Server Dashboard
+webServer.addr = "0.0.0.0"
+webServer.port = 7001
+webServer.user = "user"
+webServer.password = "password"

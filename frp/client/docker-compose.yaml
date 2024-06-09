@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  frp-client:
+    image: snowdreamtech/frpc:latest
+    container_name: frp-client
+    restart: always
+    volumes:
+      - ./frpc.toml:/etc/frp/frpc.toml
+    network_mode: host

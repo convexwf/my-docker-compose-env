@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  frp-server:
+    image: snowdreamtech/frps:latest
+    container_name: frp-server
+    restart: always
+    volumes:
+      - ./frps.toml:/etc/frp/frps.toml
+    ports:
+      - "7000:7000"
+      - "7001:7001"
+      - "7002:7002"
